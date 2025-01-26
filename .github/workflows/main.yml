@@ -41,9 +41,7 @@ jobs:
 
       - name: Setup environment
         run: |
-          cp .env.example .env
-          sed -i 's/db:5432/localhost:5432/g' .env
-
+          echo "DATABASE_URL=postgresql://postgres:password@localhost:5432/nextdb?schema=public" > .env
       - name: Setup Database
         run: npx prisma db push
 
