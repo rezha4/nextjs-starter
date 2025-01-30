@@ -36,6 +36,6 @@ describe("CRUD tests", () => {
       .contains("delete")
       .click();
 
-    cy.get("li").should("not.contain.text", "severus snape");
+    cy.contains("severus snape").should("not.exist");
   });
 });
