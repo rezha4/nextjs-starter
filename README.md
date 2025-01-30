@@ -14,6 +14,9 @@ Work in progress :)
 - 
 ## CMS
 ## Tests
+- cypress
+- github actions
+- jest/vitest
 ## Email
 ## Payment
 ## Websocket
