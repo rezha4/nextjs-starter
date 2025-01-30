@@ -45,12 +45,8 @@ jobs:
       - name: Setup Database
         run: npx prisma db push
 
-      - name: Start Next.js
-        run: npm run dev & npx wait-on http://localhost:3000
-
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          start: npm run dev
           browser: chrome
-          config-file: cypress.config.ts
-          wait-on: 'http://localhost:3000'
