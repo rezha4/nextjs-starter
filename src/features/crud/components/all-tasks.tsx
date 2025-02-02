@@ -1,47 +1,53 @@
 "use client";
 
-import { deleteUser, editUser, getUser } from "@/lib/crud";
+import { deleteTask, editTask, getTask } from "../utils/crud";
 import { useRouter } from "next/navigation";
 
-export default function AllUsers({
-  users,
+export default function AllTasks({
+  tasks,
 }: {
-  users: { id: string; name: string }[];
+  tasks: { id: string; name: string }[];
 }) {
   const router = useRouter();
 
   const handleDelete = async (id: string) => {
-    await deleteUser(id);
+    await deleteTask(id);
     router.refresh();
   };
 
   const handleEdit = async (id: string, name: string) => {
     const newName = prompt("enter a new name", name);
     if (newName === null) return;
-    await editUser(id, newName);
+    await editTask(id, newName);
     router.refresh();
   };
 
   const handleView = async (id: string) => {
-    const user = await getUser(id);
+    const user = await getTask(id);
     alert(JSON.stringify(user, null, 2));
   };
 
   return (
     <ul className="list-disc space-y-2">
-      {users?.map((user) => (
-        <li key={user.id}>
-          {user.name}
-          <button onClick={() => handleView(user.id)} className="ml-2 bg-green-300">
+      {tasks?.map((task) => (
+        <li key={task.id}>
+          {task.name}
+          <button
+            onClick={() => handleView(task.id)}
+            className="ml-2 bg-green-300"
+          >
             view
           </button>
           <button
-            onClick={() => handleEdit(user.id, user.name)}
+            onClick={() => handleEdit(task.id, task.name)}
             className="ml-2 bg-blue-400"
           >
             update
           </button>
-          <button onClick={() => handleDelete(user.id)} className="ml-2 bg-red-400">
+          <button
+            onClick={() => handleDelete(task.id)}
+            className="ml-2 bg-red-400"
+          >
             delete
           </button>
         </li>

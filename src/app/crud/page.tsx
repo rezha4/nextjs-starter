@@ -1,19 +1,19 @@
-import { getUsers } from "@/lib/crud";
 import React from "react";
-import Create from "./create";
-import AllUsers from "./all-users";
+import Create from "../../features/crud/components/create";
+import { getTasks } from "@/features/crud/utils/crud";
+import AllTasks from "@/features/crud/components/all-tasks";
 
 export default async function Crud() {
-  const users = await getUsers();
+  const tasks = await getTasks();
   return (
     <main className="w-full grid place-items-center gap-5">
       <section>
-        <p>create user:</p>
+        <p>create task:</p>
         <Create />
       </section>
       <section>
-        <p>all users:</p>
-        <AllUsers users={users} />
+        <p>all tasks:</p>
+        <AllTasks tasks={tasks} />
       </section>
     </main>
   );

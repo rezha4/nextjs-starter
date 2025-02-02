@@ -1,8 +1,8 @@
 "use client";
 
-import { postUser } from "@/lib/crud";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { createTask } from "../utils/crud";
 
 export default function Create() {
   const router = useRouter();
@@ -10,11 +10,11 @@ export default function Create() {
 
   const onSubmit = async () => {
     if (name === "") {
-      alert("name cannot be empty");
+      alert("Name cannot be empty");
       return;
     }
-    
-    postUser(name);
+
+    createTask(name);
     router.refresh();
     setName("");
   };
@@ -28,7 +28,9 @@ export default function Create() {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <button className="border p-1" onClick={onSubmit}>Create</button>
+      <button className="border p-1" onClick={onSubmit}>
+        Create
+      </button>
     </form>
   );
 }
